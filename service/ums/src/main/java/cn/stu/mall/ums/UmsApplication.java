@@ -7,8 +7,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 //和controller包同一个层次即可
 @SpringBootApplication
 @MapperScan("cn.stu.mall.ums.mapper")
-public class MallApplication {
+public class UmsApplication {
     public static void main(String[] args) {
-        SpringApplication.run(MallApplication.class, args);
+        SpringApplication.run(UmsApplication.class, args);
     }
 }

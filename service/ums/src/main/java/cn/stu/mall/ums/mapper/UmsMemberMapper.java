@@ -1,6 +1,6 @@
 package cn.stu.mall.ums.mapper;
 
-import cn.stu.mall.ums.entity.UmsMember;
+import cn.stu.mall.ums.api.entity.UmsMember;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.springframework.stereotype.Repository;
 

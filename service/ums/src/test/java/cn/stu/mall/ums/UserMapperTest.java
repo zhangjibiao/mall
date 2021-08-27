@@ -1,6 +1,6 @@
 package cn.stu.mall.ums;
 
-import cn.stu.mall.ums.entity.UmsMember;
+import cn.stu.mall.ums.api.entity.UmsMember;
 import cn.stu.mall.ums.mapper.UmsMemberMapper;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

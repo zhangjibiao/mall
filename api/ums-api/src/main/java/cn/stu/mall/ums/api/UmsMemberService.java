@@ -1,6 +1,7 @@
-package cn.stu.mall.ums.service;
+package cn.stu.mall.ums.api;
 
-import cn.stu.mall.ums.entity.UmsMember;
+
+import cn.stu.mall.ums.api.entity.UmsMember;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 /**
@@ -12,5 +13,5 @@ import com.baomidou.mybatisplus.extension.service.IService;
  * @since 2020-12-23
  */
 public interface UmsMemberService extends IService<UmsMember> {
-
+    public String register();
 }
