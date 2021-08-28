@@ -2,8 +2,10 @@ package cn.stu.mall.portal.web.controller;
 
 import cn.stu.mall.ums.api.UmsMemberService;
 import cn.stu.mall.ums.api.entity.UmsMember;
+import cn.stu.mall.ums.api.entity.dto.UmsMemberLoginParamDTO;
 import cn.stu.mall.ums.api.entity.dto.UmsMemberRegisterParamDTO;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -33,6 +35,11 @@ public class UserMemberController {
             service.register(u);
             return "register";
         }
+    }
+
+    @RequestMapping("login")
+    public String login(@RequestBody UmsMemberLoginParamDTO u){
+        return service.login(u);
     }
 
     @RequestMapping("findAll")

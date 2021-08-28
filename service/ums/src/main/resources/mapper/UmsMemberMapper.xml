@@ -8,4 +8,8 @@
     <select id="findAll" parameterType="int" resultType="cn.stu.mall.ums.api.entity.UmsMember">
         select * from ums_member
     </select>
+
+    <select id="selectByName" parameterType="String" resultType="cn.stu.mall.ums.api.entity.UmsMember">
+        select * from ums_member where username=#{username}
+    </select>
 </mapper>

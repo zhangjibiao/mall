@@ -20,4 +20,6 @@ public interface UmsMemberMapper extends BaseMapper<UmsMember> {
 
     int selectByUsername(UmsMember umsMember);
     List<UmsMember> findAll();
+
+    UmsMember selectByName(String username);
 }

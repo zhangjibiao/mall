@@ -4,6 +4,7 @@ package cn.stu.mall.ums.serviceImpl;
 
 import cn.stu.mall.ums.api.UmsMemberService;
 import cn.stu.mall.ums.api.entity.UmsMember;
+import cn.stu.mall.ums.api.entity.dto.UmsMemberLoginParamDTO;
 import cn.stu.mall.ums.api.entity.dto.UmsMemberRegisterParamDTO;
 import cn.stu.mall.ums.mapper.UmsMemberMapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
@@ -52,4 +53,22 @@ public class UmsMemberServiceImpl extends ServiceImpl<UmsMemberMapper, cn.stu.ma
     public List<UmsMember> findAll(){
         return mapper.findAll();
     }
+
+    @Override
+    public String login(UmsMemberLoginParamDTO u){
+        UmsMember umsMember = mapper.selectByName(u.getUsername());
+        if (null == umsMember){
+            return "用户名不存在！";
+        }else{
+            BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+            if (encoder.matches(u.getPassword(),umsMember.getPassword())){
+
+                return "登录成功";
+            }else {
+                return "密码不正确";
+            }
+        }
+    }
+
+
 }
