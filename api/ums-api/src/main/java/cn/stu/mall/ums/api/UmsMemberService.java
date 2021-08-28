@@ -2,7 +2,10 @@ package cn.stu.mall.ums.api;
 
 
 import cn.stu.mall.ums.api.entity.UmsMember;
+import cn.stu.mall.ums.api.entity.dto.UmsMemberRegisterParamDTO;
 import com.baomidou.mybatisplus.extension.service.IService;
+
+import java.util.List;
 
 /**
  * <p>
@@ -13,5 +16,9 @@ import com.baomidou.mybatisplus.extension.service.IService;
  * @since 2020-12-23
  */
 public interface UmsMemberService extends IService<UmsMember> {
-    public String register();
+    public String register(UmsMemberRegisterParamDTO u);
+
+    boolean isRegister(UmsMemberRegisterParamDTO u);
+
+    List<UmsMember> findAll();
 }

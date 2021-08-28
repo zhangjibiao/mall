@@ -5,6 +5,8 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 /**
  * <p>
  * 后台用户表 Mapper 接口
@@ -16,4 +18,6 @@ import org.springframework.stereotype.Repository;
 @Mapper
 public interface UmsMemberMapper extends BaseMapper<UmsMember> {
 
+    int selectByUsername(UmsMember umsMember);
+    List<UmsMember> findAll();
 }

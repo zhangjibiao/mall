@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.stu.mall.ums.mapper.UmsMemberMapper">
+    <select id="selectByUsername"  parameterType="cn.stu.mall.ums.api.entity.UmsMember" resultType="int">
+        select count(*) from ums_member where username=#{username}
+    </select>
+
+    <select id="findAll" parameterType="int" resultType="cn.stu.mall.ums.api.entity.UmsMember">
+        select * from ums_member
+    </select>
+</mapper>

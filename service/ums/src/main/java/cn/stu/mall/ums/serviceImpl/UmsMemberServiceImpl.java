@@ -4,10 +4,15 @@ package cn.stu.mall.ums.serviceImpl;
 
 import cn.stu.mall.ums.api.UmsMemberService;
 import cn.stu.mall.ums.api.entity.UmsMember;
+import cn.stu.mall.ums.api.entity.dto.UmsMemberRegisterParamDTO;
 import cn.stu.mall.ums.mapper.UmsMemberMapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * <p>
@@ -23,10 +28,28 @@ public class UmsMemberServiceImpl extends ServiceImpl<UmsMemberMapper, cn.stu.ma
     UmsMemberMapper mapper;
 
     @Override
-    public String register(){
-        UmsMember u = new UmsMember();
-        u.setUsername("lishi");
-        mapper.insert(u);
+    public String register(UmsMemberRegisterParamDTO u){
+        UmsMember umsMember = new UmsMember();
+
+        // 加密密码
+        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+        String encoded = encoder.encode(u.getPassword());
+        u.setPassword(encoded);
+
+        BeanUtils.copyProperties(u, umsMember);
+        mapper.insert(umsMember);
         return "success";
+    }
+
+    @Override
+    public boolean isRegister(UmsMemberRegisterParamDTO u) {
+        UmsMember umsMember = new UmsMember();
+        BeanUtils.copyProperties(u, umsMember);
+        return mapper.selectByUsername(umsMember) >= 1;
+    }
+
+    @Override
+    public List<UmsMember> findAll(){
+        return mapper.findAll();
     }
 }
