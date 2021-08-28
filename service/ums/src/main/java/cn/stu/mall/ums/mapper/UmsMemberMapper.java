@@ -2,6 +2,7 @@ package cn.stu.mall.ums.mapper;
 
 import cn.stu.mall.ums.api.entity.UmsMember;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -12,7 +13,7 @@ import org.springframework.stereotype.Repository;
  * @author 张积标
  * @since 2021-08-26
  */
-@Repository
+@Mapper
 public interface UmsMemberMapper extends BaseMapper<UmsMember> {
 
 }
