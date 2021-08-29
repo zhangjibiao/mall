@@ -2,6 +2,7 @@ package cn.stu.mall.ums.serviceImpl;
 
 
 
+import cn.stu.mall.common.base.result.ResultWrapper;
 import cn.stu.mall.common.utils.JwtUtil;
 import cn.stu.mall.ums.api.UmsMemberService;
 import cn.stu.mall.ums.api.entity.UmsMember;
@@ -56,18 +57,18 @@ public class UmsMemberServiceImpl extends ServiceImpl<UmsMemberMapper, cn.stu.ma
     }
 
     @Override
-    public String login(UmsMemberLoginParamDTO u){
+    public ResultWrapper login(UmsMemberLoginParamDTO u){
         UmsMember umsMember = mapper.selectByName(u.getUsername());
         if (null == umsMember){
-            return "用户名不存在！";
+            return ResultWrapper.getFailBuilder().data("用户名不存在！").build();
         }else{
             BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
             if (encoder.matches(u.getPassword(),umsMember.getPassword())){
                 String token = JwtUtil.getToken(umsMember.getUsername());
                 System.out.println(umsMember.getUsername()+"   登录成功");
-                return token;
+                return ResultWrapper.getSuccessBuilder().data(token).build();
             }else {
-                return "密码不正确";
+                return ResultWrapper.getFailBuilder().data("密码不正确！").build();
             }
         }
     }

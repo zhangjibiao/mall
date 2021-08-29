@@ -1,6 +1,7 @@
 package cn.stu.mall.ums.api;
 
 
+import cn.stu.mall.common.base.result.ResultWrapper;
 import cn.stu.mall.ums.api.entity.UmsMember;
 import cn.stu.mall.ums.api.entity.dto.UmsMemberRegisterParamDTO;
 import cn.stu.mall.ums.api.entity.dto.UmsMemberLoginParamDTO;
@@ -23,5 +24,5 @@ public interface UmsMemberService extends IService<UmsMember> {
 
     List<UmsMember> findAll();
 
-    String login(UmsMemberLoginParamDTO u);
+    ResultWrapper login(UmsMemberLoginParamDTO u);
 }

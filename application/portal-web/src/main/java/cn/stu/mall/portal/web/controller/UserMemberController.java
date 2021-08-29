@@ -32,25 +32,18 @@ public class UserMemberController {
     }
 
     @RequestMapping("register")
-    public String register(@RequestBody @Valid UmsMemberRegisterParamDTO u){
+    public ResultWrapper register(@RequestBody @Valid UmsMemberRegisterParamDTO u){
         if (service.isRegister(u)){
-            return "用户名重复，请换一个！";
+            return ResultWrapper.getFailBuilder().data("用户名重复，请换一个！").build();
         }else {
             service.register(u);
-            return "register";
+            return ResultWrapper.getSuccessBuilder().data(u.getUsername() + "  register").build();
         }
     }
 
-/*    @RequestMapping("login")
-    public ResultWrapper login(@RequestBody UmsMemberLoginParamDTO u){
-        //return service.login(u);
-        return ResultWrapper.getSuccessBuilder().data("good").build();
-    }*/
-
     @RequestMapping("login")
-    public String login(@RequestBody UmsMemberLoginParamDTO u){
+    public ResultWrapper login(@RequestBody UmsMemberLoginParamDTO u){
         return service.login(u);
-        //return ResultWrapper.getSuccessBuilder().data("good").build();
     }
 
     @RequestMapping("findAll")
@@ -61,10 +54,11 @@ public class UserMemberController {
     }
 
     @RequestMapping("verify")
-    public String verify(String token){
+    public ResultWrapper verify(String token){
         String s = JwtUtil.parseToken(token);
-        return s;
+        return ResultWrapper.getSuccessBuilder().data(s).build();
     }
+
 
 
 }
