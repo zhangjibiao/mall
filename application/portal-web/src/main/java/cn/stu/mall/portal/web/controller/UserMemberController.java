@@ -1,9 +1,11 @@
 package cn.stu.mall.portal.web.controller;
 
+import cn.stu.mall.common.base.annotations.TokenCheck;
 import cn.stu.mall.common.base.result.ResultWrapper;
 import cn.stu.mall.common.utils.JwtUtil;
 import cn.stu.mall.ums.api.UmsMemberService;
 import cn.stu.mall.ums.api.entity.UmsMember;
+import cn.stu.mall.ums.api.entity.dto.UmsMemberChangeParamDTO;
 import cn.stu.mall.ums.api.entity.dto.UmsMemberLoginParamDTO;
 import cn.stu.mall.ums.api.entity.dto.UmsMemberRegisterParamDTO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -57,6 +59,12 @@ public class UserMemberController {
     public ResultWrapper verify(String token){
         String s = JwtUtil.parseToken(token);
         return ResultWrapper.getSuccessBuilder().data(s).build();
+    }
+
+    @RequestMapping("modified")
+    @TokenCheck
+    public ResultWrapper modified(@RequestBody UmsMemberChangeParamDTO u){
+        return service.modified(u);
     }
 
 

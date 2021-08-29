@@ -10,14 +10,12 @@ import java.util.Date;
 public class MyHandler implements MetaObjectHandler {
     @Override
     public void insertFill(MetaObject metaObject) {
-        System.out.println("添加修改时间");
         this.setFieldValByName("gmtCreate", new Date(), metaObject);
         this.setFieldValByName("gmtModified", new Date(), metaObject);
     }
 
     @Override
     public void updateFill(MetaObject metaObject) {
-        System.out.println("添加更新时间");
         this.setFieldValByName("gmtModified", new Date(), metaObject);
     }
 }

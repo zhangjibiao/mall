@@ -18,7 +18,6 @@ public class JwtUtil {
     }
 
     public static String parseToken(String token){
-        System.out.println("传入的token\n"+token);
         Claims body = Jwts.parser().setSigningKey(secret).parseClaimsJws(token).getBody();
         String subject = body.getSubject();
         return subject;

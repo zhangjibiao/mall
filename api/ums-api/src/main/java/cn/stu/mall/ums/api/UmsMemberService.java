@@ -3,6 +3,7 @@ package cn.stu.mall.ums.api;
 
 import cn.stu.mall.common.base.result.ResultWrapper;
 import cn.stu.mall.ums.api.entity.UmsMember;
+import cn.stu.mall.ums.api.entity.dto.UmsMemberChangeParamDTO;
 import cn.stu.mall.ums.api.entity.dto.UmsMemberRegisterParamDTO;
 import cn.stu.mall.ums.api.entity.dto.UmsMemberLoginParamDTO;
 import com.baomidou.mybatisplus.extension.service.IService;
@@ -25,4 +26,6 @@ public interface UmsMemberService extends IService<UmsMember> {
     List<UmsMember> findAll();
 
     ResultWrapper login(UmsMemberLoginParamDTO u);
+
+    ResultWrapper modified(UmsMemberChangeParamDTO u);
 }

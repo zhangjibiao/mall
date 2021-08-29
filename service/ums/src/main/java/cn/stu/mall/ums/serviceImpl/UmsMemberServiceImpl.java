@@ -6,6 +6,7 @@ import cn.stu.mall.common.base.result.ResultWrapper;
 import cn.stu.mall.common.utils.JwtUtil;
 import cn.stu.mall.ums.api.UmsMemberService;
 import cn.stu.mall.ums.api.entity.UmsMember;
+import cn.stu.mall.ums.api.entity.dto.UmsMemberChangeParamDTO;
 import cn.stu.mall.ums.api.entity.dto.UmsMemberLoginParamDTO;
 import cn.stu.mall.ums.api.entity.dto.UmsMemberRegisterParamDTO;
 import cn.stu.mall.ums.mapper.UmsMemberMapper;
@@ -67,11 +68,25 @@ public class UmsMemberServiceImpl extends ServiceImpl<UmsMemberMapper, cn.stu.ma
                 String token = JwtUtil.getToken(umsMember.getUsername());
                 System.out.println(umsMember.getUsername()+"   登录成功");
                 return ResultWrapper.getSuccessBuilder().data(token).build();
+                //还得加上用户实体类类型
             }else {
                 return ResultWrapper.getFailBuilder().data("密码不正确！").build();
             }
         }
     }
 
+    @Override
+    public ResultWrapper modified(UmsMemberChangeParamDTO u){
+        UmsMember umsMember = mapper.selectByName(u.getUsername());
 
+        BeanUtils.copyProperties(u, umsMember);
+        // 加密密码
+        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+        String encoded = encoder.encode(umsMember.getPassword());
+        umsMember.setPassword(encoded);
+
+        System.out.println(umsMember.toString());
+        mapper.updateById(umsMember);
+        return ResultWrapper.getSuccessBuilder().data("修改成功").build();
+    }
 }
