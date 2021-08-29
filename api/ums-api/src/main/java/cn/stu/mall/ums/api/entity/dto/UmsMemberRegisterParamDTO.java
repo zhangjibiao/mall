@@ -10,7 +10,7 @@ import javax.validation.constraints.NotEmpty;
 @Data
 public class UmsMemberRegisterParamDTO {
     @NotEmpty(message = "用户名不能为空")
-    @Max(value = 8,message = "用户名不能超过8位")
+    //@Max(value = 20,message = "用户名不能超过20位")
     private String username;
     private String password;
     private String icon;

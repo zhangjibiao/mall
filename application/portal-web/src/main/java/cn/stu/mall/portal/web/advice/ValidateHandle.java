@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
-@ControllerAdvice
+//@ControllerAdvice
 public class ValidateHandle extends ResponseEntityExceptionHandler {
     @Override
     protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex,
@@ -24,7 +24,7 @@ public class ValidateHandle extends ResponseEntityExceptionHandler {
             break;
         }
 
-
+        System.out.println(sb.toString());
         return new ResponseEntity(ResultWrapper.builder().code(102).msg(sb.toString()).build(), HttpStatus.OK);
     }
 }

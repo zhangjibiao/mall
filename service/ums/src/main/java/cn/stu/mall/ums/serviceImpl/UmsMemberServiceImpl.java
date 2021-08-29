@@ -2,6 +2,7 @@ package cn.stu.mall.ums.serviceImpl;
 
 
 
+import cn.stu.mall.common.utils.JwtUtil;
 import cn.stu.mall.ums.api.UmsMemberService;
 import cn.stu.mall.ums.api.entity.UmsMember;
 import cn.stu.mall.ums.api.entity.dto.UmsMemberLoginParamDTO;
@@ -62,8 +63,9 @@ public class UmsMemberServiceImpl extends ServiceImpl<UmsMemberMapper, cn.stu.ma
         }else{
             BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
             if (encoder.matches(u.getPassword(),umsMember.getPassword())){
-
-                return "登录成功";
+                String token = JwtUtil.getToken(umsMember.getUsername());
+                System.out.println(umsMember.getUsername()+"   登录成功");
+                return token;
             }else {
                 return "密码不正确";
             }

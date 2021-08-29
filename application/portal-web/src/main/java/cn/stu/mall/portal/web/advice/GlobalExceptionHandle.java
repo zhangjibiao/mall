@@ -3,8 +3,8 @@ package cn.stu.mall.portal.web.advice;
 import cn.stu.mall.common.base.result.ResultWrapper;
 import org.springframework.web.bind.annotation.*;
 
-@ControllerAdvice
-@ResponseBody
+//@ControllerAdvice
+//@ResponseBody
 //@RestControllerAdvice
 public class GlobalExceptionHandle {
 

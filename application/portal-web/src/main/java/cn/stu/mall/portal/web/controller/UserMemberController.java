@@ -1,6 +1,7 @@
 package cn.stu.mall.portal.web.controller;
 
 import cn.stu.mall.common.base.result.ResultWrapper;
+import cn.stu.mall.common.utils.JwtUtil;
 import cn.stu.mall.ums.api.UmsMemberService;
 import cn.stu.mall.ums.api.entity.UmsMember;
 import cn.stu.mall.ums.api.entity.dto.UmsMemberLoginParamDTO;
@@ -40,10 +41,16 @@ public class UserMemberController {
         }
     }
 
-    @RequestMapping("login")
+/*    @RequestMapping("login")
     public ResultWrapper login(@RequestBody UmsMemberLoginParamDTO u){
-//        return service.login(u);
+        //return service.login(u);
         return ResultWrapper.getSuccessBuilder().data("good").build();
+    }*/
+
+    @RequestMapping("login")
+    public String login(@RequestBody UmsMemberLoginParamDTO u){
+        return service.login(u);
+        //return ResultWrapper.getSuccessBuilder().data("good").build();
     }
 
     @RequestMapping("findAll")
@@ -51,6 +58,12 @@ public class UserMemberController {
         List<UmsMember> list = service.findAll();
         System.out.println(Arrays.toString(list.toArray()));
         return "success";
+    }
+
+    @RequestMapping("verify")
+    public String verify(String token){
+        String s = JwtUtil.parseToken(token);
+        return s;
     }
 
 
