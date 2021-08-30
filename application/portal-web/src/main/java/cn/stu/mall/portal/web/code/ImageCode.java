@@ -48,6 +48,9 @@ public class ImageCode {
 
             graphics.setColor(new Color(218,61,37));
             graphics.drawString(s, width/6*i, 60);
+
+            graphics.setColor(new Color(100,100,100));
+            graphics.drawLine((width/6)*i, 40, width/6*i+25, 30);
         }
 
         //收笔
