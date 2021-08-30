@@ -2,6 +2,7 @@ package cn.stu.mall.portal.web.interceptor;
 
 import cn.stu.mall.common.base.annotations.TokenCheck;
 import cn.stu.mall.common.utils.JwtUtil;
+import cn.stu.mall.portal.web.exception.a;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.HandlerInterceptor;
@@ -19,7 +20,7 @@ public class AuthInterceptor implements HandlerInterceptor {
         String token = request.getHeader("token");
         System.out.println(token);
         if (StringUtils.isBlank(token)){
-            throw new LoginException("未登录！");
+            throw new a("未登录！");
         }
 
         HandlerMethod methodhandle = (HandlerMethod) handler;
