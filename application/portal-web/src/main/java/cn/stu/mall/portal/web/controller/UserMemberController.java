@@ -33,6 +33,11 @@ public class UserMemberController {
         return "hello";
     }
 
+    @RequestMapping
+    public String getCaptcha(){
+        return "获取验证码";
+    }
+
     @RequestMapping("register")
     public ResultWrapper register(@RequestBody @Valid UmsMemberRegisterParamDTO u){
         if (service.isRegister(u)){

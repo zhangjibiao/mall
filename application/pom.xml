@@ -12,6 +12,9 @@
     <artifactId>application</artifactId>
     <packaging>pom</packaging>
     <description>请求过来经过的第一层,也就是controller层</description>
+    <modules>
+        <module>ca-web</module>
+    </modules>
 
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
